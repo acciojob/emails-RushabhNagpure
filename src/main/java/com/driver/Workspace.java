@@ -32,8 +32,8 @@ public class Workspace extends Gmail{
         // right = indexofmeeting // sr no.
 
         ArrayList<Pair<LocalTime, Integer>> endTimes = new ArrayList<>();
-        for(int i=0;i<calendar.size() ; i++){
-            endTimes.add(Pair.of(calendar.get(0).getEndTime() , i));
+        for(int i=0; i<calendar.size() ; i++){
+            endTimes.add(Pair.of(calendar.get(i).getEndTime() , i));
         }
         Collections.sort(endTimes);
         LocalTime time_limit = endTimes.get(0).getLeft();
@@ -42,7 +42,8 @@ public class Workspace extends Gmail{
         if(!endTimes.isEmpty()){
             cnt += 1;
         }
-        for(int i=0;i< calendar.size();i++){
+        for(int i=1;i < endTimes.size();i++){
+
             if(calendar.get(endTimes.get(i).getRight()).getStartTime().compareTo(time_limit) > 0){
                 cnt += 1;
                 time_limit = endTimes.get(i).getLeft();

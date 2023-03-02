@@ -32,11 +32,12 @@ public class Gmail extends Email {
         Inbox.get(mail);
     }
 
-    public void deleteMail(String message){
+    public void deleteMail(String message)
+    {
         // Each message is distinct
         // If the given message is found in any mail in the inbox, move the mail to trash, else do nothing
-        int index = -1;
-        for(int i=0;i<Inbox.size(),i++){
+        int index = -1 ;
+        for(int i=0;i<Inbox.size();i++){
             if(message.equals(Inbox.get(i).getRight())){
                 index = i ;
                 break;
@@ -71,10 +72,10 @@ public class Gmail extends Email {
     public int findMailsBetweenDates(Date start, Date end){
         //find number of mails in the inbox which are received between given dates
         //It is guaranteed that start date <= end date
-        int cnt  = 0;
-        for(int i = 0 ; i<Inbox.size();i++ ){
-            if((Inbox.get(i)getLeft().compareTo(start) >= 0) && (Inbox.get(i).getLeft().compareTo(end) <= 0) ){
-                 cnt += i;
+        int cnt = 0;
+        for(int i = 0 ; i<Inbox.size(); i++){
+            if((Inbox.get(i).getLeft().compareTo(start) >= 0) && (Inbox.get(i).getLeft().compareTo(end) <= 0) ){
+                 cnt += 1;
             }
         }
         return cnt ;
