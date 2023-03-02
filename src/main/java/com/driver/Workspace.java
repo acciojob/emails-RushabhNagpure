@@ -3,7 +3,7 @@ package com.driver;
 import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Collections;
-import javafx.util.Pair;
+
 
 public class Workspace extends Gmail{
 
@@ -22,7 +22,7 @@ public class Workspace extends Gmail{
     }
 
     public int findMaxMeetings(){
-        ArrayList<Pair<LocalTime, Integer>> endTimes = new ArrayList<>();
+        ArrayList<Pair<LocalTime , Integer>> endTimes = new ArrayList<>();
         for(int i=0; i<calendar.size() ; i++){
             endTimes.add(Pair.of(calendar.get(i).getEndTime(), i));
         }
