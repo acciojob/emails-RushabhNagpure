@@ -12,6 +12,14 @@ public class Email {
         this.password = "Accio@123";
     }
 
+    public void setEmailId(String emailId) {
+        this.emailId = emailId;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public String getEmailId() {
         return emailId;
     }
@@ -27,6 +35,7 @@ public class Email {
         // 3. It contains at least one lowercase letter
         // 4. It contains at least one digit
         // 5. It contains at least one special character. Any character apart from alphabets and digits is a special character
+
    if(oldPassword.equals(password)){
     if(valid(newPassword)){
         out.println("Password changed succesfully");
@@ -42,7 +51,7 @@ public class Email {
    private boolean valid(String password){
         boolean capitalLetter = false;
         boolean smallLetter   = false;
-        boolean   digit       = false;
+        boolean   digit  = false;
         boolean specialLetter = false;
 
         if(password.length() < 8){
@@ -51,17 +60,17 @@ public class Email {
 
        for (int i = 0; i <password.length() ; i++) {
            char ch = password.charAt(i);
-           if(ch >= 'A' && ch <= 'Z'){
+           if((ch >= 'A' ) && (ch <= 'Z')){
                capitalLetter = true;
            }
-           else if(ch >= 'a' && ch <= 'z'){
+           else if((ch >= 'a') &&( ch <= 'z')){
                smallLetter = true;
            }
-          else if(ch >= '0' && ch <= '9'){
+          else if((ch >= '0') && (ch <= '9')){
                digit = true;
-           }else {
+           }else
               specialLetter = true;
-           }
+
        }
        if(capitalLetter && smallLetter && digit && specialLetter)
            return true;

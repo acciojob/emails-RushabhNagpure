@@ -13,6 +13,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="emails" target="11" />
+      <module name="emails-RushabhNagpure" target="11" />
       <module name="vehicles" target="11" />
     </bytecodeTargetLevel>
   </component>

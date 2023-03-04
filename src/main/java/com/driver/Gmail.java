@@ -1,8 +1,11 @@
 package com.driver;
 
-import javax.xml.crypto.Data;
-import java.util.ArrayList;
+import org.apache.commons.lang3.tuple.Triple;
 
+//import javax.xml.crypto.Data;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.*;
 
 
 public class Gmail extends Email {
@@ -10,8 +13,8 @@ public class Gmail extends Email {
         // middel = sender;
         // right = message;
     private int inboxCapacity; //maximum number of mails inbox can store
-    private ArrayList<Triple<Data,String,String>> Inbox;  //Inbox: Stores mails. Each mail has date (Date), sender (String), message (String). It is guaranteed that message is distinct for all mails.
-    private ArrayList<Triple<Data,String,String>> Trash; //Trash: Stores mails. Each mail has date (Date), sender (String), message (String)
+    private ArrayList<Triple<Date,String,String>> Inbox;  //Inbox: Stores mails. Each mail has date (Date), sender (String), message (String). It is guaranteed that message is distinct for all mails.
+    private ArrayList<Triple<Date,String,String>> Trash; //Trash: Stores mails. Each mail has date (Date), sender (String), message (String)
     public Gmail(String emailId, int inboxCapacity) {
         super(emailId);
         this.inboxCapacity = inboxCapacity;
@@ -20,18 +23,19 @@ public class Gmail extends Email {
 
     }
 
+
     public void receiveMail(Date date, String sender, String message){
         // If the inbox is full, move the oldest mail in the inbox to trash and add the new mail to inbox.
         // It is guaranteed that:
         // 1. Each mail in the inbox is distinct.
         // 2. The mails are received in non-decreasing order. This means that the date of a new mail is greater than equal to the dates of mails received already.
         if(Inbox.size() == inboxCapacity){
-            Triple<Date,String,String> oldestmail = Inbox.get(0);
+            Triple<Date, String, String> oldestmail = Inbox.get(0);
             Inbox.remove(0);
             Trash.add(oldestmail);
         }
-        Triple< Data, String, String > mail = Triple.of(data,sender,message);
-        Inbox.get(mail);
+        Triple< Date, String, String > mail =  Triple.of(date,sender,message);
+        Inbox.add(mail);
     }
 
     public void deleteMail(String message)
@@ -76,9 +80,10 @@ public class Gmail extends Email {
         //It is guaranteed that start date <= end date
         int cnt = 0;
         for(int i = 0 ; i<Inbox.size(); i++){
-            if((Inbox.get(i).getLeft().compareTo(start) >= 0) && (Inbox.get(i).getLeft().compareTo(end) <= 0) ){
-                 cnt += 1;
-            }
+            if (Inbox.get(i).getLeft().compareTo(start) >= 0)
+                if (Inbox.get(i).getLeft().compareTo(end) <= 0) {
+                    cnt += 1;
+                }
         }
         return cnt ;
     }
@@ -96,7 +101,7 @@ public class Gmail extends Email {
 
     public void emptyTrash(){
         // clear all mails in the trash
-        return Trash.clear();
+         Trash.clear();
     }
 
     public int getInboxCapacity() {
